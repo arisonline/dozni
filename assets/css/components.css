@@ -1711,3 +1711,153 @@
         display: none !important;
     }
 }
+
+
+
+
+
+
+
+
+/* =========================================================
+   HOMEPAGE SUPPORT
+   ========================================================= */
+
+.eyebrow {
+    display: inline-block;
+    margin-bottom: var(--space-3);
+
+    color: var(--color-text-muted);
+
+    font-size: var(--text-sm);
+    font-weight: 700;
+
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.section-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--space-6);
+
+    margin-bottom: var(--space-7);
+}
+
+.section-header h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.section-description {
+    max-width: 520px;
+
+    font-size: var(--text-base);
+    line-height: 1.7;
+}
+
+.text-link {
+    flex-shrink: 0;
+
+    color: var(--color-text);
+
+    font-size: var(--text-sm);
+    font-weight: 700;
+}
+
+.text-link:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.content-narrow {
+    width: min(
+        100%,
+        820px
+    );
+
+    margin-inline: auto;
+}
+
+.faq-list {
+    display: grid;
+    gap: 12px;
+}
+
+.faq-item {
+    background: var(--color-surface);
+
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+
+    overflow: hidden;
+}
+
+.faq-item summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: var(--space-5);
+
+    cursor: pointer;
+
+    color: var(--color-text);
+
+    font-weight: 700;
+
+    list-style: none;
+}
+
+.faq-item summary::-webkit-details-marker {
+    display: none;
+}
+
+.faq-item summary::after {
+    content: "+";
+
+    flex-shrink: 0;
+
+    margin-left: var(--space-4);
+
+    color: var(--color-text-muted);
+
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.faq-item[open] summary::after {
+    content: "−";
+}
+
+.faq-answer {
+    padding:
+        0
+        var(--space-5)
+        var(--space-5);
+}
+
+.faq-answer p {
+    line-height: 1.7;
+}
+
+.feature-card-arrow {
+    margin-top: auto;
+}
+
+@media (max-width: 768px) {
+
+    .section-header {
+        display: block;
+    }
+
+    .section-header .text-link {
+        display: inline-block;
+        margin-top: var(--space-4);
+    }
+
+    .section-description {
+        margin-top: var(--space-3);
+    }
+
+}
