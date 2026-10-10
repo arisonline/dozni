@@ -46,15 +46,21 @@ body:has(.compress-tool .upload-box.hidden) .compress-tool{border:2px solid var(
 .actions button:hover{background:var(--color-primary-hover)}.actions button:disabled{opacity:.45;cursor:not-allowed}
 .compress-note{position:absolute;top:100%;left:0;width:100%;margin:10px 0 0;padding:0;color:var(--color-text-muted);font-size:.9rem;line-height:1.6;text-align:left;box-sizing:border-box}
 .tool-shared-sections{width:100%;margin-top:0}.tool-shared-sections .services-section,.tool-shared-sections .dozni-howto-section,.tool-shared-sections .dozni-about-section,.tool-shared-sections .faq-section{width:100%;margin-inline:0;background:transparent;border:0;box-shadow:none}
+body:has(.compress-tool) .generic-feature-sections{display:none!important}
+body:has(.compress-tool) .dozni-about-section{display:none!important}
+body:has(.compress-tool) .generic-feature-sections{visibility:hidden!important;height:0!important;overflow:hidden!important;margin:0!important;padding:0!important}
 @media(max-width:900px){.compress-info-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:600px){.compress-page{padding:42px 0 24px}.compress-wrap{width:min(calc(100% - 28px),var(--container-width))}.compress-hero{width:100%;max-width:none}.compress-tool{margin:0 0 48px}.upload-box{min-height:230px;padding:26px 18px}.upload-btn{width:min(100%,340px);min-height:72px;font-size:1.55rem}.compress-container{padding:18px 12px 0}.compress-controls{align-items:stretch;margin-bottom:14px}.compress-controls input[type=range]{width:100%;flex-basis:100%}.cmp{padding:12px}.file-list{gap:12px}.file-card{width:min(100%,180px);flex-basis:min(100%,180px);min-width:0}.file-card canvas{height:160px}.actions{padding:10px;flex-direction:column}.actions button{width:100%}.compress-note{font-size:.86rem;line-height:1.55}.tool-shared-sections .services-section,.tool-shared-sections .dozni-howto-section,.tool-shared-sections .dozni-about-section,.tool-shared-sections .faq-section{width:100%;margin-inline:0}}
 
 /* The shared component uses one large PDF SVG on the right of the five-step list. */
-.compress-pdf-specific .dozni-howto-copy{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:clamp(30px,6vw,90px);align-items:center}
+.compress-pdf-specific .dozni-howto-copy{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:clamp(30px,6vw,90px);align-items:center;font-family:var(--font-sans)}
 .compress-pdf-specific .dozni-howto-art{grid-column:2!important;grid-row:1!important;display:grid!important;place-items:center;align-self:center;color:var(--color-text)!important;position:static!important;width:auto;height:auto;margin:0}
 .compress-pdf-specific .dozni-howto-art svg{width:min(230px,100%);height:auto;display:block}
 @media(max-width:900px){.compress-pdf-specific .dozni-howto-copy{grid-template-columns:minmax(0,1fr) 190px;gap:28px}.compress-pdf-specific .dozni-howto-art svg{width:170px}}
 @media(max-width:650px){.compress-pdf-specific .dozni-howto-copy{grid-template-columns:1fr;gap:28px}.compress-pdf-specific .dozni-howto-art{grid-column:1!important;grid-row:auto!important;order:2;padding-top:8px}.compress-pdf-specific .dozni-howto-art svg{width:110px}}
 
-/* The compressor page uses the PDF-specific shared sections only. */
-.generic-feature-sections{display:none!important}
+/* Shared site typography: use the same family and token scale for the compressor's content sections. */
+.compress-page,.compress-page button,.compress-page input,.compress-page textarea,.compress-page select,.compress-page h1,.compress-page h2,.compress-page h3,.compress-page p,.compress-page label{font-family:var(--font-sans)}
+.compress-pdf-specific .dozni-section-title{font-size:clamp(var(--text-3xl),4vw,var(--text-5xl));line-height:var(--line-tight);font-weight:700}
+.compress-pdf-specific .dozni-section-text,.compress-pdf-specific .dozni-howto-step p,.compress-pdf-specific .compress-info-card p{font-size:var(--text-lg);line-height:var(--line-relaxed)}
+.compress-pdf-specific .compress-info-card h3{font-size:var(--text-xl);line-height:var(--line-snug);font-weight:700}
