@@ -137,12 +137,41 @@
         }
     }
 
+    function setupCardArrows() {
+        const style = document.createElement("style");
+        style.textContent = `
+            .card-arrow {
+                bottom: 18px !important;
+                padding: 0 !important;
+                display: grid !important;
+                place-items: center !important;
+                line-height: 0 !important;
+                font-size: 0 !important;
+            }
+            .card-arrow::before {
+                content: "→";
+                display: block;
+                font-size: 1.15rem;
+                font-weight: 800;
+                line-height: 1;
+                transform: translateY(-1px);
+            }
+            @media (max-width: 600px) {
+                .card-arrow {
+                    bottom: 14px !important;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+
     function initialize() {
         const theme = getSavedTheme();
 
         applyTheme(theme);
         setupThemeControls();
         watchSystemTheme();
+        setupCardArrows();
     }
 
     /*
