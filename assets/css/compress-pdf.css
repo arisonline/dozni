@@ -55,3 +55,6 @@ body:has(.compress-tool .upload-box.hidden) .compress-tool{border:2px solid var(
 .compress-pdf-specific .dozni-howto-art svg{width:min(230px,100%);height:auto;display:block}
 @media(max-width:900px){.compress-pdf-specific .dozni-howto-copy{grid-template-columns:minmax(0,1fr) 190px;gap:28px}.compress-pdf-specific .dozni-howto-art svg{width:170px}}
 @media(max-width:650px){.compress-pdf-specific .dozni-howto-copy{grid-template-columns:1fr;gap:28px}.compress-pdf-specific .dozni-howto-art{grid-column:1!important;grid-row:auto!important;order:2;padding-top:8px}.compress-pdf-specific .dozni-howto-art svg{width:110px}}
+
+/* The compressor page uses the PDF-specific shared sections only. */
+.generic-feature-sections{display:none!important}
