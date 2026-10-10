@@ -29,35 +29,44 @@
 </div></div></section>
 
 <style>
-.dozni-howto-section,.dozni-about-section{width:min(calc(100% - 40px),var(--container-width));margin:0 auto;padding:var(--space-12) 0;background:transparent;border:0;box-shadow:none;color:var(--color-text)}
+.dozni-howto-section,.dozni-about-section{width:min(calc(100% - 40px),var(--container-width));margin:0 auto;padding:clamp(76px,8vw,120px) 0;background:transparent;border:0;box-shadow:none;color:var(--color-text)}
+.dozni-section-header{width:100%;margin:0 auto 52px;text-align:left}
+.dozni-section-badge{display:inline-flex;padding:8px 14px;border-radius:10px;background:var(--color-primary-soft);color:var(--color-primary);font-size:15px;font-weight:800}
+.dozni-section-title{margin:18px 0 14px;color:var(--color-text);font-size:clamp(2.35rem,4.5vw,4rem);line-height:1.08;letter-spacing:-.045em;max-width:1000px}
+.dozni-section-text{margin:0;color:var(--color-text-muted);font-size:1.18rem;line-height:1.75;max-width:900px}
 .dozni-howto-section{display:grid;grid-template-columns:minmax(0,1fr) 180px;align-items:center;gap:var(--space-8)}
 .dozni-howto-copy{min-width:0}
-.dozni-howto-title,.dozni-about-title{font-size:var(--text-3xl);line-height:var(--line-tight);letter-spacing:-.025em;color:var(--color-text);margin:0 0 var(--space-6)}
+.dozni-howto-header{grid-column:1 / -1}
 .dozni-howto-steps{display:grid;gap:var(--space-4)}
 .dozni-howto-step{display:grid;grid-template-columns:40px minmax(0,1fr);align-items:start;gap:var(--space-4)}
 .dozni-howto-number{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:#10069b;color:#fff;font-size:var(--text-base);font-weight:800}
-.dozni-howto-step p{margin:0;padding-top:1px;color:var(--color-text);font-size:var(--text-lg);line-height:var(--line-relaxed)}
-.dozni-howto-art{width:160px;height:160px;margin-inline:auto;display:grid;place-items:center;color:#212121}
+.dozni-howto-step p{margin:0;padding-top:1px;color:var(--color-text);font-size:1.18rem;line-height:1.75}
+.dozni-howto-art{width:160px;height:160px;margin-inline:auto;display:grid;place-items:center;color:#212121;grid-column:2;grid-row:2}
 .dozni-howto-icon{width:160px;height:160px;display:block}
 .dozni-about-section{margin-top:0}
-.dozni-about-title{margin-bottom:var(--space-5)}
 .dozni-about-copy{display:grid;gap:var(--space-4)}
-.dozni-about-copy p{margin:0;color:var(--color-text-soft);font-size:var(--text-lg);line-height:var(--line-relaxed)}
+.dozni-about-copy p{margin:0;color:var(--color-text-muted);font-size:1.18rem;line-height:1.75;max-width:900px}
 @media(max-width:700px){
-  .dozni-howto-section,.dozni-about-section{padding:var(--space-10) 0}
+  .dozni-howto-section,.dozni-about-section{padding:70px 0}
+  .dozni-section-header{margin-bottom:36px}
+  .dozni-section-title{font-size:clamp(2rem,9vw,2.8rem)}
+  .dozni-section-text,.dozni-howto-step p,.dozni-about-copy p{font-size:1rem;line-height:1.75}
   .dozni-howto-section{grid-template-columns:1fr;gap:var(--space-5)}
-  .dozni-howto-art{grid-row:1;width:120px;height:120px;margin-inline:0}
+  .dozni-howto-header{grid-column:1}
+  .dozni-howto-art{grid-column:1;grid-row:auto;width:120px;height:120px;margin:0}
   .dozni-howto-icon{width:120px;height:120px}
-  .dozni-howto-title,.dozni-about-title{font-size:var(--text-2xl);margin-bottom:var(--space-5)}
   .dozni-howto-steps{gap:var(--space-3)}
   .dozni-howto-step{grid-template-columns:36px minmax(0,1fr);gap:var(--space-3)}
   .dozni-howto-number{width:34px;height:34px}
-  .dozni-howto-step p,.dozni-about-copy p{font-size:var(--text-base);line-height:var(--line-relaxed)}
 }
 </style>
 <section class="dozni-howto-section" aria-labelledby="dozni-howto-title">
+  <div class="dozni-howto-header dozni-section-header">
+    <div class="dozni-section-badge">How To</div>
+    <h2 class="dozni-section-title" id="dozni-howto-title">How To Use Our Tools</h2>
+    <p class="dozni-section-text">Follow these simple steps to quickly resize, compress or convert your files online.</p>
+  </div>
   <div class="dozni-howto-copy">
-    <h2 class="dozni-howto-title" id="dozni-howto-title">How To Use Our Tools</h2>
     <div class="dozni-howto-steps">
       <div class="dozni-howto-step"><span class="dozni-howto-number">1</span><p>Open any tool from the homepage.</p></div>
       <div class="dozni-howto-step"><span class="dozni-howto-number">2</span><p>Upload your image or document securely.</p></div>
@@ -72,14 +81,18 @@
       <path d="M9.25 15.2498C9.94036 15.2498 10.5 14.6902 10.5 13.9998C10.5 13.3095 9.94036 12.7498 9.25 12.7498C8.55964 12.7498 8 13.3095 8 13.9998C8 14.6902 8.55964 15.2498 9.25 15.2498Z" fill="#212121"/>
       <path d="M9.25 20.5C9.94036 20.5 10.5 19.9404 10.5 19.25C10.5 18.5596 9.94036 18 9.25 18C8.55964 18 8 18.5596 8 19.25C8 19.9404 8.55964 20.5 9.25 20.5Z" fill="#212121"/>
       <path d="M12.75 8C12.3358 8 12 8.33579 12 8.75C12 9.16421 12.3358 9.5 12.75 9.5H19.25C19.6642 9.5 20 9.16421 20 8.75C20 8.33579 19.6642 8 19.25 8H12.75Z" fill="#212121"/>
-      <path d="M12 13.9998C12 13.5856 12.3358 13.2498 12.75 13.2498H19.25C19.6642 13.2498 20 13.5856 20 13.9998C20 14.414 19.6642 14.7498 19.25 14.7498H12.75C12.3358 14.7498 12 14.414 12 13.9998Z" fill="#212121"/>
+      <path d="M12 13.9998C12 13.5856 12.3358 13.2498 12.75 13.2498H19.25C19.6642 13.2498 20 13.5856 20 13.9998 20 14.414 19.6642 14.7498 19.25 14.7498H12.75C12.3358 14.7498 12 14.414 12 13.9998Z" fill="#212121"/>
       <path d="M12.75 18.5C12.3358 18.5 12 18.8358 12 19.25C12 19.6642 12.3358 20 12.75 20H19.25C19.6642 20 20 19.6642 20 19.25C20 18.8358 19.6642 18.5 19.25 18.5H12.75Z" fill="#212121"/>
       <path d="M25.7803 19.7803L19.7803 25.7803C19.6397 25.921 19.4489 26 19.25 26C19.0511 26 18.8603 25.921 18.7197 25.7803L15.7216 22.7823C15.4287 22.4894 15.4287 22.0145 15.7216 21.7216C16.0145 21.4287 16.4894 21.4287 16.7823 21.7216L19.25 24.1893L24.7197 18.7197C25.0126 18.4268 25.4874 18.4268 25.7803 18.7197C26.0732 19.0126 26.0732 19.4874 25.7803 19.7803Z" fill="#212121"/>
     </svg>
   </div>
 </section>
 <section class="dozni-about-section" aria-labelledby="dozni-about-title">
-  <h2 class="dozni-about-title" id="dozni-about-title">About Our Online Tools</h2>
+  <div class="dozni-section-header">
+    <div class="dozni-section-badge">About</div>
+    <h2 class="dozni-section-title" id="dozni-about-title">About Our Online Tools</h2>
+    <p class="dozni-section-text">Fast, practical and privacy-focused utilities for everyday digital tasks.</p>
+  </div>
   <div class="dozni-about-copy">
     <p>Our free online tools are specially designed for students, job applicants and professionals who need quick image resizing, compression and PDF conversion utilities.</p>
     <p>Where supported, image processing happens directly inside your browser, helping keep your files private and secure.</p>
