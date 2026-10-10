@@ -8,9 +8,8 @@ body:has(.compress-tool) .generic-faq{display:none}body:has(.compress-tool) .com
 .compress-tool{border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;overflow:visible!important}
 
 /* After files are uploaded, make the complete compressor area unmistakable as the main tool. */
-body:has(.compress-tool .upload-box.hidden) .compress-tool{border:2px solid var(--color-primary)!important;border-radius:0!important;background:var(--color-surface)!important;box-shadow:0 10px 30px rgb(15 23 42 / .06)!important;overflow:hidden!important}
+body:has(.compress-tool .upload-box.hidden) .compress-tool{border:2px solid var(--color-primary)!important;border-radius:0!important;background:var(--color-surface)!important;box-shadow:0 10px 30px rgb(15 23 42 / .06)!important;overflow:visible!important}
 body:has(.compress-tool .upload-box.hidden) .compress-tool .compress-container{padding-top:18px}
-body:has(.compress-tool .upload-box.hidden) .compress-tool .compress-note{padding-bottom:4px}
 
 .upload-box{margin:0!important;min-height:270px!important;padding:34px!important;border:2px dashed var(--color-primary)!important;border-radius:0!important;background:var(--color-surface)!important;transition:background-color .25s ease,border-color .25s ease,border-style .15s ease,box-shadow .25s ease,transform .25s ease!important}
 .upload-box:hover,.upload-box:focus-within{border-style:solid!important;background:var(--color-primary-soft)!important;box-shadow:0 0 0 5px var(--color-primary-soft),0 14px 32px rgb(15 23 42 / .08)!important;transform:translateY(-1px)}
@@ -25,7 +24,6 @@ body:has(.compress-tool .upload-box.hidden) .compress-tool .file-list{display:fl
 body:has(.compress-tool .upload-box.hidden) .compress-tool .file-card{width:160px!important;flex:0 0 160px!important;min-width:160px!important;box-sizing:border-box!important}
 body:has(.compress-tool .upload-box.hidden) .compress-tool .file-card canvas{height:140px!important}
 body:has(.compress-tool .upload-box.hidden) .compress-tool .actions{width:100%!important;margin:0!important;border:1px solid var(--color-primary)!important;border-radius:0!important;background:var(--color-surface)!important;padding:10px!important;box-sizing:border-box!important}
-body:has(.compress-tool .upload-box.hidden) .compress-tool .compress-note{margin:10px 0 14px!important}
 
 /* Uploaded controls: square main panel, rounded controls only. */
 body:has(.compress-tool .upload-box.hidden) .compress-tool .compress-controls{border:1px solid var(--color-primary)!important;border-radius:0!important;background:var(--color-surface)!important;margin:0 0 18px!important}
