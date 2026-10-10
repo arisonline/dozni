@@ -18,10 +18,7 @@
     function getSavedTheme() {
         const saved = localStorage.getItem(STORAGE_KEY);
 
-        if (saved === "light" || saved === "dark" || saved === "system") {
-            return saved;
-        }
-
+        if (saved === "light" || saved === "dark" || saved === "system") return saved;
         return "system";
     }
 
@@ -75,9 +72,7 @@
 
             if (valueButton) {
                 const value = valueButton.getAttribute("data-theme-value");
-                if (value === "light" || value === "dark" || value === "system") {
-                    saveTheme(value);
-                }
+                if (value === "light" || value === "dark" || value === "system") saveTheme(value);
                 return;
             }
 
@@ -148,93 +143,110 @@
     function setupHowToResponsive() {
         const style = document.createElement("style");
         style.textContent = `
+            /* Mobile How To: use the same wide theme container, keep all steps
+               together, then place the large checklist illustration underneath. */
             @media (max-width: 900px) {
                 .dozni-howto-section {
                     position: relative !important;
                     display: block !important;
-                    width: min(calc(100% - 32px), var(--container-width)) !important;
+                    width: min(calc(100% - 40px), var(--container-width)) !important;
                 }
+
                 .dozni-howto-header {
-                    padding-right: 130px !important;
+                    padding-right: 0 !important;
+                    margin-bottom: 32px !important;
                 }
+
+                .dozni-howto-copy {
+                    width: 100% !important;
+                }
+
                 .dozni-howto-art {
-                    position: absolute !important;
-                    top: 74px !important;
-                    right: 0 !important;
-                    width: 110px !important;
-                    height: 110px !important;
-                    margin: 0 !important;
+                    position: static !important;
+                    width: 190px !important;
+                    height: 190px !important;
+                    margin: 38px auto 0 !important;
                     display: grid !important;
                     place-items: center !important;
                 }
+
                 .dozni-howto-icon {
-                    width: 110px !important;
-                    height: 110px !important;
+                    width: 190px !important;
+                    height: 190px !important;
                 }
             }
 
             @media (max-width: 700px) {
                 .dozni-howto-section {
-                    width: min(calc(100% - 28px), var(--container-width)) !important;
+                    width: min(calc(100% - 40px), var(--container-width)) !important;
                     padding: 62px 0 70px !important;
                 }
+
                 .dozni-howto-header {
                     margin-bottom: 30px !important;
-                    padding-right: 105px !important;
+                    padding-right: 0 !important;
                 }
+
                 .dozni-section-title {
-                    font-size: clamp(1.9rem, 8.5vw, 2.55rem) !important;
+                    font-size: clamp(2rem, 8.5vw, 2.7rem) !important;
                     line-height: 1.08 !important;
                 }
+
                 .dozni-section-text {
-                    font-size: .98rem !important;
-                    line-height: 1.65 !important;
+                    font-size: 1rem !important;
+                    line-height: 1.7 !important;
+                    max-width: 100% !important;
                 }
-                .dozni-howto-art {
-                    top: 66px !important;
-                    width: 100px !important;
-                    height: 100px !important;
+
+                .dozni-howto-steps {
+                    width: 100% !important;
+                    gap: 16px !important;
                 }
-                .dozni-howto-icon {
-                    width: 100px !important;
-                    height: 100px !important;
-                }
-                .dozni-howto-steps { gap: 14px !important; }
+
                 .dozni-howto-step {
-                    grid-template-columns: 34px minmax(0, 1fr) !important;
+                    grid-template-columns: 36px minmax(0, 1fr) !important;
                     gap: 14px !important;
                     align-items: center !important;
                 }
+
                 .dozni-howto-number {
-                    width: 34px !important;
-                    height: 34px !important;
-                    font-size: .92rem !important;
+                    width: 36px !important;
+                    height: 36px !important;
+                    font-size: .94rem !important;
                 }
+
                 .dozni-howto-step p {
                     padding-top: 0 !important;
                     font-size: 1rem !important;
-                    line-height: 1.55 !important;
+                    line-height: 1.6 !important;
+                }
+
+                .dozni-howto-art {
+                    width: 190px !important;
+                    height: 190px !important;
+                    margin: 42px auto 0 !important;
+                }
+
+                .dozni-howto-icon {
+                    width: 190px !important;
+                    height: 190px !important;
                 }
             }
 
             @media (max-width: 380px) {
                 .dozni-howto-section {
-                    width: calc(100% - 24px) !important;
+                    width: calc(100% - 40px) !important;
                 }
-                .dozni-howto-header {
-                    padding-right: 92px !important;
-                }
+
                 .dozni-howto-art {
-                    position: absolute !important;
-                    top: 66px !important;
-                    right: 0 !important;
-                    width: 88px !important;
-                    height: 88px !important;
-                    margin: 0 !important;
+                    width: 170px !important;
+                    height: 170px !important;
+                    margin-top: 38px !important;
                 }
+
                 .dozni-howto-icon {
-                    width: 88px !important;
-                    height: 88px !important;
+                    width: 170px !important;
+                    height: 170px !important;
                 }
             }
         `;
