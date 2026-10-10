@@ -109,17 +109,57 @@ function createFileCard(file){
  card.appendChild(fileInfo);
  const removeBtn=document.createElement('button');removeBtn.className='remove-button';removeBtn.textContent='X';removeBtn.type='button';removeBtn.addEventListener('click',()=>{pdfFiles=pdfFiles.filter(f=>f!==file);compressedFiles=compressedFiles.filter(f=>f.name!==file.name);card.remove();if(pdfFiles.length===0){compressBtn.disabled=true;downloadZipBtn.disabled=true;AllContainer.classList.add('hidden');compressContainer.classList.add('hidden');actionsContainer.classList.add('hidden');uploadContainer.classList.remove('hidden');fileInput.value="";}updateActionButtons();});card.appendChild(removeBtn);
  const canvas=document.createElement('canvas');card.appendChild(canvas);
- const passwordBox=document.createElement('div');passwordBox.className='password-box hidden';passwordBox.innerHTML='<input type="password" placeholder="Enter PDF password"><button type="button">Unlock & Compress</button><div class="password-error"></div>';card.appendChild(passwordBox);
- const compressedSize=document.createElement('span');compressedSize.className='compressed-size';card.appendChild(compressedSize);
- const downloadBtn=document.createElement('button');downloadBtn.className='download-btn';downloadBtn.textContent='Download PDF';downloadBtn.disabled=true;card.appendChild(downloadBtn);
- pdfjsLib.getDocument({url:URL.createObjectURL(file)}).promise.then(pdf=>pdf.getPage(1)).then(page=>{const viewport=page.getViewport({scale:1});canvas.width=viewport.width;canvas.height=viewport.height;return page.render({canvasContext:canvas.getContext('2d'),viewport}).promise;}).catch(()=>{});
+ const passwordBox=document.createElement('div');passwordBox.className='password-box hidden';passwordBox.innerHTML='<input type="password" placeholder="Enter password"><button type="button">Unlock</button><div class="password-error hidden">Wrong password</div>';card.appendChild(passwordBox);
+ const reader=new FileReader();
+ let downloadBtn;
+ reader.onload=async function(){
+  try{
+   const pdf=await pdfjsLib.getDocument({data:new Uint8Array(this.result)}).promise;
+   const page=await pdf.getPage(1);const viewport=page.getViewport({scale:0.4});canvas.width=viewport.width;canvas.height=viewport.height;await page.render({canvasContext:canvas.getContext('2d'),viewport}).promise;file.isLocked=false;file._isLocked=false;updateActionButtons();
+  }catch(err){
+   if(err.name==='PasswordException'){
+    file.isLocked=true;file._isLocked=true;updateActionButtons();passwordBox.classList.remove('hidden');const msg=document.createElement('p');msg.textContent='This file is protected. Enter password';passwordBox.prepend(msg);canvas.style.display='none';downloadBtn.style.display='none';
+    const input=passwordBox.querySelector('input'),btn=passwordBox.querySelector('button'),errMsg=passwordBox.querySelector('.password-error');
+    btn.onclick=async()=>{try{const pdf=await pdfjsLib.getDocument({data:new Uint8Array(reader.result),password:input.value}).promise;const page=await pdf.getPage(1);const viewport=page.getViewport({scale:0.4});canvas.width=viewport.width;canvas.height=viewport.height;await page.render({canvasContext:canvas.getContext('2d'),viewport}).promise;passwordBox.classList.add('hidden');canvas.style.display='block';downloadBtn.style.display='inline-block';file.isLocked=false;file._isLocked=false;file._pdfPassword=input.value;const compressedArrayBuffer=await compressPDF(file,parseInt(compressionRange.value),file._pdfPassword);compressedFiles.push({name:file.name,data:new Blob([compressedArrayBuffer],{type:'application/pdf'})});updateCompressedSizeUI(file.name,compressedArrayBuffer.byteLength);updateActionButtons();}catch(e){errMsg.classList.remove('hidden');}};
+   }
+  }
+ };
+ reader.readAsArrayBuffer(file);
+ const compressedInfo=document.createElement('div');compressedInfo.className='file-info';compressedInfo.innerHTML='<span class="compressed-size">Compressing...</span>';card.appendChild(compressedInfo);
+ downloadBtn=document.createElement('button');downloadBtn.className='download-btn';downloadBtn.textContent='Download PDF';downloadBtn.type='button';downloadBtn.addEventListener('click',()=>{const targetFile=compressedFiles.find(f=>f.name===file.name);if(targetFile)saveAs(targetFile.data,file.name);else saveAs(file,file.name);});card.appendChild(downloadBtn);
+ fileList.appendChild(card);
+ updateActionButtons();
 }
-function updateCompressedSizeUI(name,size){const file=pdfFiles.find(f=>f.name===name);if(!file)return;const card=document.getElementById('card-'+pdfFiles.indexOf(file));if(!card)return;const el=card.querySelector('.compressed-size');if(el)el.textContent='Compressed: '+(size/1024).toFixed(1)+' KB';const btn=card.querySelector('.download-btn');const result=compressedFiles.find(f=>f.name===name);if(btn&&result){btn.disabled=false;btn.onclick=()=>{const blob=result.data instanceof Blob?result.data:new Blob([result.data],{type:'application/pdf'});saveAs(blob,name.replace(/\.pdf$/i,'')+'-compressed.pdf');};}}
-async function compressPDF(file,quality,password=null){const arrayBuffer=await file.arrayBuffer();const loadingTask=pdfjsLib.getDocument({data:arrayBuffer,password:password||undefined});const pdf=await loadingTask.promise;const {jsPDF}=window.jspdf;let out;for(let i=1;i<=pdf.numPages;i++){const page=await pdf.getPage(i);const scale=1.5;const viewport=page.getViewport({scale});const canvas=document.createElement('canvas');const context=canvas.getContext('2d',{alpha:false});canvas.width=viewport.width;canvas.height=viewport.height;await page.render({canvasContext:context,viewport}).promise;const imageQuality=Math.max(.1,Math.min(1,quality/100));const imageData=canvas.toDataURL('image/jpeg',imageQuality);if(i===1){out=new jsPDF({orientation:viewport.width>viewport.height?'landscape':'portrait',unit:'pt',format:[viewport.width,viewport.height],compress:true});}else{out.addPage([viewport.width,viewport.height],viewport.width>viewport.height?'landscape':'portrait');}out.addImage(imageData,'JPEG',0,0,viewport.width,viewport.height,undefined,'FAST');}return out.output('arraybuffer');}
-compressBtn.addEventListener('click',async()=>{if(pdfFiles.length===0)return;await autoCompressFiles(pdfFiles);updateActionButtons();});
-deleteAllBtn.addEventListener('click',()=>{pdfFiles=[];compressedFiles=[];fileList.innerHTML='';AllContainer.classList.add('hidden');compressContainer.classList.add('hidden');actionsContainer.classList.add('hidden');uploadContainer.classList.remove('hidden');compressBtn.disabled=true;downloadZipBtn.disabled=true;});
-downloadZipBtn.addEventListener('click',async()=>{if(compressedFiles.length===0)return;const zip=new JSZip();compressedFiles.forEach(f=>{const data=f.data instanceof Blob?f.data:new Blob([f.data],{type:'application/pdf'});zip.file(f.name.replace(/\.pdf$/i,'')+'-compressed.pdf',data);});const blob=await zip.generateAsync({type:'blob'});saveAs(blob,'compressed-pdfs.zip');});
-function escapeHtml(str){const div=document.createElement('div');div.textContent=str;return div.innerHTML;}
+function updateCompressedSizeUI(filename,size){document.querySelectorAll('.file-card').forEach(card=>{const name=card.querySelector('.filename');if(name&&name.title===filename){const el=card.querySelector('.compressed-size');if(el)el.textContent='Compressed: '+formatFileSize(size);}});}
+function formatFileSize(bytes){if(bytes<1024)return bytes+' B';if(bytes<1024*1024)return(bytes/1024).toFixed(1)+' KB';return(bytes/(1024*1024)).toFixed(1)+' MB';}
+function escapeHtml(text){const div=document.createElement('div');div.textContent=text;return div.innerHTML;}
+async function compressPDF(file,level,password=null){
+ const arrayBuffer=await file.arrayBuffer();
+ const pdf=await pdfjsLib.getDocument({data:arrayBuffer,password}).promise;
+ const {jsPDF}=window.jspdf;
+ const pdfDoc=new jsPDF();
+ for(let i=1;i<=pdf.numPages;i++){
+  const page=await pdf.getPage(i);
+  const viewport=page.getViewport({scale:2});
+  const canvas=document.createElement('canvas');
+  canvas.width=viewport.width;canvas.height=viewport.height;
+  const ctx=canvas.getContext('2d');
+  await page.render({canvasContext:ctx,viewport}).promise;
+  const quality=Math.max(0.1,1-level/100);
+  const imgData=canvas.toDataURL('image/jpeg',quality);
+  if(i>1)pdfDoc.addPage();
+  pdfDoc.addImage(imgData,'JPEG',0,0,pdfDoc.internal.pageSize.getWidth(),pdfDoc.internal.pageSize.getHeight());
+ }
+ return await pdfDoc.output('arraybuffer');
+}
+compressBtn.addEventListener('click',async()=>{
+ if(pdfFiles.length===0)return;
+ compressBtn.disabled=true;loadingContainer.style.display='flex';flashMessage.textContent='';flashMessage.className='flash-message';compressedFiles=[];
+ for(const file of pdfFiles){try{const compressedArrayBuffer=await compressPDF(file,parseInt(compressionRange.value),file._pdfPassword||null);if(compressedArrayBuffer.byteLength>=file.size){compressedFiles.push({name:file.name,data:file});updateCompressedSizeUI(file.name,file.size);}else{compressedFiles.push({name:file.name,data:new Blob([compressedArrayBuffer],{type:'application/pdf'})});updateCompressedSizeUI(file.name,compressedArrayBuffer.byteLength);}}catch(e){console.log('Compression skipped for',file.name,e.message);}}
+ downloadZipBtn.disabled=compressedFiles.length===0;loadingContainer.style.display='none';compressBtn.disabled=false;if(compressedFiles.length)flashMessage.textContent='Compression complete.';
+});
+deleteAllBtn.addEventListener('click',()=>{pdfFiles=[];compressedFiles=[];fileList.innerHTML='';compressBtn.disabled=true;downloadZipBtn.disabled=true;AllContainer.classList.add('hidden');compressContainer.classList.add('hidden');actionsContainer.classList.add('hidden');uploadContainer.classList.remove('hidden');fileInput.value='';flashMessage.textContent='';});
+downloadZipBtn.addEventListener('click',async()=>{if(compressedFiles.length===0)return;const zip=new JSZip();const folder=zip.folder('11zon');compressedFiles.forEach(file=>folder.file(file.name,file.data));const content=await zip.generateAsync({type:'blob'});saveAs(content,'11zon_pdfs.zip');});
 </script>
 </body>
 </html>
