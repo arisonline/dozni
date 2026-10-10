@@ -1,5 +1,23 @@
 <style>
-.services-section{padding:clamp(76px,8vw,120px) 0}.services-header{width:100%;margin:0 auto 52px;text-align:left}.section-badge{display:inline-flex;padding:8px 14px;border-radius:10px;background:#eeeafe;color:#5b4bd8;font-size:15px;font-weight:800}.services-title{margin:18px 0 14px;font-size:clamp(2.35rem,4.5vw,4rem);line-height:1.08;letter-spacing:-.045em;max-width:1000px}.services-text{margin:0;color:#64748b;font-size:1.18rem;line-height:1.75;max-width:900px}.services-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}.service-item{position:relative;display:flex;gap:20px;padding:30px;border:1px solid #e1e5ec;border-radius:20px;background:#fff;min-height:190px;overflow:hidden;transition:.22s}.service-item:hover{transform:translateY(-3px);border-color:#cbd3df;box-shadow:0 16px 38px rgba(20,30,55,.08)}.service-icon{width:54px;height:54px;flex:0 0 54px;border-radius:14px;background:#eeeafe;color:#5b4bd8;display:grid;place-items:center}.service-icon svg{width:28px;height:28px}.service-item:nth-child(2) .service-icon{color:#07845d;background:#e8fbf3}.service-item:nth-child(3) .service-icon{color:#2563eb;background:#e8f1ff}.service-item:nth-child(4) .service-icon{color:#c77800;background:#fff4df}.service-item:nth-child(5) .service-icon{color:#db2777;background:#ffebf5}.service-item:nth-child(6) .service-icon{color:#0891b2;background:#e5f9fc}.service-content h3{margin:2px 0 10px;font-size:clamp(1.3rem,2vw,1.65rem);line-height:1.25}.service-content p{margin:0;color:#64748b;font-size:1.05rem;line-height:1.7}@media(max-width:950px){.services-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:650px){.services-section{padding:70px 0}.services-header{margin-bottom:36px}.services-title{font-size:clamp(2rem,9vw,2.8rem)}.services-grid{grid-template-columns:1fr}.service-item{padding:24px;min-height:0}.service-content p{font-size:1rem}}
+.services-section{padding:clamp(76px,8vw,120px) 0;background:var(--color-bg)}
+.services-header{width:100%;margin:0 auto 52px;text-align:left}
+.section-badge{display:inline-flex;padding:8px 14px;border-radius:10px;background:var(--color-primary-soft);color:var(--color-primary);font-size:15px;font-weight:800}
+.services-title{margin:18px 0 14px;color:var(--color-text);font-size:clamp(2.35rem,4.5vw,4rem);line-height:1.08;letter-spacing:-.045em;max-width:1000px}
+.services-text{margin:0;color:var(--color-text-muted);font-size:1.18rem;line-height:1.75;max-width:900px}
+.services-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.service-item{position:relative;display:flex;gap:20px;padding:30px;border:1px solid var(--color-border);border-radius:20px;background:var(--color-surface);min-height:190px;overflow:hidden;transition:.22s}
+.service-item:hover{transform:translateY(-3px);border-color:var(--color-border-strong);box-shadow:var(--shadow-md)}
+.service-icon{width:54px;height:54px;flex:0 0 54px;border-radius:14px;background:var(--color-primary-soft);color:var(--color-primary);display:grid;place-items:center}
+.service-icon svg{width:28px;height:28px}
+.service-item:nth-child(2) .service-icon{color:#16a36a;background:#e8fbf3}
+.service-item:nth-child(3) .service-icon{color:#3b82f6;background:#e8f1ff}
+.service-item:nth-child(4) .service-icon{color:#d97706;background:#fff4df}
+.service-item:nth-child(5) .service-icon{color:#db2777;background:#ffebf5}
+.service-item:nth-child(6) .service-icon{color:#0891b2;background:#e5f9fc}
+.service-content h3{margin:2px 0 10px;color:var(--color-text);font-size:clamp(1.3rem,2vw,1.65rem);line-height:1.25}
+.service-content p{margin:0;color:var(--color-text-muted);font-size:1.05rem;line-height:1.7}
+@media(max-width:950px){.services-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:650px){.services-section{padding:70px 0}.services-header{margin-bottom:36px}.services-title{font-size:clamp(2rem,9vw,2.8rem)}.services-grid{grid-template-columns:1fr}.service-item{padding:24px;min-height:0}.service-content p{font-size:1rem}}
 </style>
 <section class="services-section"><div class="container"><div class="services-header"><div class="section-badge">Why Choose Us</div><h2 class="services-title">Powerful tools built for speed and productivity.</h2><p class="services-text">Modern online utilities designed for creators, developers, marketers and digital workflows.</p></div><div class="services-grid">
 <div class="service-item"><div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M13 2 3 14h7l-1 8 10-12h-7z"/></svg></div><div class="service-content"><h3>Lightning Fast</h3><p>All tools are optimized for instant processing and smooth modern performance.</p></div></div>
