@@ -145,17 +145,39 @@
                 padding: 0 !important;
                 display: grid !important;
                 place-items: center !important;
+                position: absolute !important;
                 line-height: 0 !important;
                 font-size: 0 !important;
+                text-indent: -9999px !important;
+                overflow: hidden !important;
             }
+
             .card-arrow::before {
-                content: "→";
-                display: block;
-                font-size: 1.15rem;
-                font-weight: 800;
-                line-height: 1;
-                transform: translateY(-1px);
+                content: "";
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                width: 15px;
+                height: 2px;
+                background: currentColor;
+                border-radius: 2px;
+                transform: translate(-50%, -50%);
             }
+
+            .card-arrow::after {
+                content: "";
+                position: absolute;
+                left: calc(50% + 4px);
+                top: 50%;
+                width: 7px;
+                height: 7px;
+                border-top: 2px solid currentColor;
+                border-right: 2px solid currentColor;
+                border-radius: 1px;
+                transform: translate(-50%, -50%) rotate(45deg);
+                box-sizing: border-box;
+            }
+
             @media (max-width: 600px) {
                 .card-arrow {
                     bottom: 14px !important;
