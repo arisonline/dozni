@@ -49,12 +49,9 @@ body:has(.compress-tool .upload-box.hidden) .compress-tool{border:2px solid var(
 @media(max-width:900px){.compress-info-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:600px){.compress-page{padding:42px 0 24px}.compress-wrap{width:min(calc(100% - 28px),var(--container-width))}.compress-hero{width:100%;max-width:none}.compress-tool{margin:0 0 48px}.upload-box{min-height:230px;padding:26px 18px}.upload-btn{width:min(100%,340px);min-height:72px;font-size:1.55rem}.compress-container{padding:18px 12px 0}.compress-controls{align-items:stretch;margin-bottom:14px}.compress-controls input[type=range]{width:100%;flex-basis:100%}.cmp{padding:12px}.file-list{gap:12px}.file-card{width:min(100%,180px);flex-basis:min(100%,180px);min-width:0}.file-card canvas{height:160px}.actions{padding:10px;flex-direction:column}.actions button{width:100%}.compress-note{font-size:.86rem;line-height:1.55}.tool-shared-sections .services-section,.tool-shared-sections .dozni-howto-section,.tool-shared-sections .dozni-about-section,.tool-shared-sections .faq-section{width:100%;margin-inline:0}}
 
-/* Shared compressor presentation: the original PDF illustration is one large visual for the full five-step list. */
-.compress-pdf-specific .dozni-howto-steps{position:relative;padding-right:280px}
-.compress-pdf-specific .dozni-howto-step{grid-template-columns:40px minmax(0,1fr)!important;gap:var(--space-4)!important}
-.compress-pdf-specific .dozni-pdf-step-icon{display:none!important}
-.compress-pdf-specific .dozni-howto-step:first-child .dozni-pdf-step-icon{display:grid!important;position:absolute!important;right:0;top:50%;transform:translateY(-50%);width:230px;height:230px;color:var(--color-text)!important}
-.compress-pdf-specific .dozni-howto-step:first-child .dozni-pdf-step-icon svg{width:230px;height:230px;display:block}
-.compress-pdf-specific .dozni-howto-step:first-child .dozni-pdf-step-icon use{color:var(--color-text)!important}
-@media(max-width:900px){.compress-pdf-specific .dozni-howto-steps{padding-right:210px}.compress-pdf-specific .dozni-howto-step:first-child .dozni-pdf-step-icon{width:175px;height:175px}.compress-pdf-specific .dozni-howto-step:first-child .dozni-pdf-step-icon svg{width:175px;height:175px}}
-@media(max-width:650px){.compress-pdf-specific .dozni-howto-steps{padding-right:0;padding-bottom:130px}.compress-pdf-specific .dozni-howto-step:first-child .dozni-pdf-step-icon{top:100%;right:50%;transform:translate(50%,24px);width:110px;height:110px}.compress-pdf-specific .dozni-howto-step:first-child .dozni-pdf-step-icon svg{width:110px;height:110px}.compress-pdf-specific .dozni-howto-step:first-child .dozni-pdf-step-icon use{color:var(--color-text)!important}}
+/* The shared component uses one large PDF SVG on the right of the five-step list. */
+.compress-pdf-specific .dozni-howto-copy{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:clamp(30px,6vw,90px);align-items:center}
+.compress-pdf-specific .dozni-howto-art{grid-column:2!important;grid-row:1!important;display:grid!important;place-items:center;align-self:center;color:var(--color-text)!important;position:static!important;width:auto;height:auto;margin:0}
+.compress-pdf-specific .dozni-howto-art svg{width:min(230px,100%);height:auto;display:block}
+@media(max-width:900px){.compress-pdf-specific .dozni-howto-copy{grid-template-columns:minmax(0,1fr) 190px;gap:28px}.compress-pdf-specific .dozni-howto-art svg{width:170px}}
+@media(max-width:650px){.compress-pdf-specific .dozni-howto-copy{grid-template-columns:1fr;gap:28px}.compress-pdf-specific .dozni-howto-art{grid-column:1!important;grid-row:auto!important;order:2;padding-top:8px}.compress-pdf-specific .dozni-howto-art svg{width:110px}}
