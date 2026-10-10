@@ -187,6 +187,111 @@
         document.head.appendChild(style);
     }
 
+    function setupHowToResponsive() {
+        const style = document.createElement("style");
+        style.textContent = `
+            @media (max-width: 900px) {
+                .dozni-howto-section {
+                    position: relative !important;
+                    display: block !important;
+                }
+
+                .dozni-howto-header {
+                    padding-right: 115px !important;
+                }
+
+                .dozni-howto-art {
+                    position: absolute !important;
+                    top: 78px !important;
+                    right: 0 !important;
+                    width: 90px !important;
+                    height: 90px !important;
+                    margin: 0 !important;
+                    display: grid !important;
+                    place-items: center !important;
+                }
+
+                .dozni-howto-icon {
+                    width: 90px !important;
+                    height: 90px !important;
+                }
+            }
+
+            @media (max-width: 700px) {
+                .dozni-howto-section {
+                    padding: 62px 0 70px !important;
+                }
+
+                .dozni-howto-header {
+                    margin-bottom: 30px !important;
+                    padding-right: 78px !important;
+                }
+
+                .dozni-section-title {
+                    font-size: clamp(1.9rem, 8.5vw, 2.55rem) !important;
+                    line-height: 1.08 !important;
+                }
+
+                .dozni-section-text {
+                    font-size: .98rem !important;
+                    line-height: 1.65 !important;
+                }
+
+                .dozni-howto-art {
+                    top: 68px !important;
+                    width: 62px !important;
+                    height: 62px !important;
+                }
+
+                .dozni-howto-icon {
+                    width: 62px !important;
+                    height: 62px !important;
+                }
+
+                .dozni-howto-steps {
+                    gap: 14px !important;
+                }
+
+                .dozni-howto-step {
+                    grid-template-columns: 34px minmax(0, 1fr) !important;
+                    gap: 14px !important;
+                    align-items: center !important;
+                }
+
+                .dozni-howto-number {
+                    width: 34px !important;
+                    height: 34px !important;
+                    font-size: .92rem !important;
+                }
+
+                .dozni-howto-step p {
+                    padding-top: 0 !important;
+                    font-size: 1rem !important;
+                    line-height: 1.55 !important;
+                }
+            }
+
+            @media (max-width: 380px) {
+                .dozni-howto-header {
+                    padding-right: 0 !important;
+                }
+
+                .dozni-howto-art {
+                    position: static !important;
+                    width: 58px !important;
+                    height: 58px !important;
+                    margin: 22px 0 0 !important;
+                }
+
+                .dozni-howto-icon {
+                    width: 58px !important;
+                    height: 58px !important;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+
     function initialize() {
         const theme = getSavedTheme();
 
@@ -194,6 +299,7 @@
         setupThemeControls();
         watchSystemTheme();
         setupCardArrows();
+        setupHowToResponsive();
     }
 
     /*
