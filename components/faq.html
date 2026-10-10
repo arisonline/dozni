@@ -8,7 +8,7 @@ body:has(.compress-tool) .generic-faq{display:none}body:has(.compress-tool) .com
 .compress-tool{border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;overflow:visible!important}
 
 /* After files are uploaded, make the complete compressor area unmistakable as the main tool. */
-body:has(.compress-tool .upload-box.hidden) .compress-tool{border:2px solid var(--color-primary)!important;border-radius:0!important;background:var(--color-surface)!important;box-shadow:0 10px 30px rgb(15 23 42 / .06)!important;overflow:visible!important}
+body:has(.compress-tool .upload-box.hidden) .compress-tool{position:relative!important;border:2px solid var(--color-primary)!important;border-radius:0!important;background:var(--color-surface)!important;box-shadow:0 10px 30px rgb(15 23 42 / .06)!important;overflow:visible!important}
 body:has(.compress-tool .upload-box.hidden) .compress-tool .compress-container{padding-top:18px}
 
 .upload-box{margin:0!important;min-height:270px!important;padding:34px!important;border:2px dashed var(--color-primary)!important;border-radius:0!important;background:var(--color-surface)!important;transition:background-color .25s ease,border-color .25s ease,border-style .15s ease,box-shadow .25s ease,transform .25s ease!important}
@@ -31,8 +31,7 @@ body:has(.compress-tool .upload-box.hidden) .compress-tool .compress-controls bu
 body:has(.compress-tool .upload-box.hidden) .compress-tool .compress-controls .secondary-btn{border-color:var(--color-primary)!important;border-radius:8px!important}
 
 /* Keep the explanatory note visually outside the blue tool border. */
-body:has(.compress-tool .upload-box.hidden) .compress-wrap{position:relative}
-body:has(.compress-tool .upload-box.hidden) .compress-tool{margin-bottom:42px}
+body:has(.compress-tool .upload-box.hidden) .compress-tool{margin-bottom:42px!important}
 body:has(.compress-tool .upload-box.hidden) .compress-tool .compress-note{position:absolute;top:100%;left:0;width:100%;margin:10px 0 0!important;padding:0!important;text-align:left;box-sizing:border-box}
 
 @media(max-width:600px){.upload-box{min-height:230px!important;padding:26px 18px!important}.upload-btn{width:min(100%,340px)!important;min-height:72px!important;font-size:1.55rem!important}.compress-tool{margin:0!important}body:has(.compress-tool .upload-box.hidden) .compress-tool{border-width:2px!important;margin-bottom:48px!important}.cmp{margin-left:14px;margin-right:14px}.actions{width:calc(100% - 28px)}body:has(.compress-tool .upload-box.hidden) .compress-tool .cmp{margin:0!important;padding:12px!important}body:has(.compress-tool .upload-box.hidden) .compress-tool .file-list{gap:12px!important}.file-card{max-width:100%}body:has(.compress-tool .upload-box.hidden) .compress-tool .file-card{width:min(100%,180px)!important;flex-basis:min(100%,180px)!important;min-width:0!important}body:has(.compress-tool .upload-box.hidden) .compress-tool .file-card canvas{height:160px!important}body:has(.compress-tool .upload-box.hidden) .compress-tool .actions{padding:10px!important}body:has(.compress-tool .upload-box.hidden) .compress-tool .compress-note{font-size:.86rem;line-height:1.55}}
