@@ -1,0 +1,76 @@
+<style>
+.dozni-tools-intro{--tools-orange:#ff641f;--tools-blue:#1111a8}
+.dozni-tools-hero{background:var(--tools-orange);color:#fff;text-align:center;padding:clamp(74px,8vw,112px) 20px clamp(64px,7vw,92px)}
+.dozni-tools-hero-inner{width:min(100%,1080px);margin-inline:auto}
+.dozni-tools-hero h1{margin:0;font-size:clamp(2.35rem,5vw,4.1rem);line-height:1.12;font-weight:850;letter-spacing:-.045em;color:#fff}
+.dozni-tools-hero p{max-width:900px;margin:22px auto 0;font-size:clamp(1rem,1.7vw,1.2rem);line-height:1.75;color:rgba(255,255,255,.96)}
+.dozni-tools-actions{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:32px}
+.dozni-tools-actions a{min-width:176px;min-height:50px;padding:13px 24px;border-radius:5px;display:inline-flex;align-items:center;justify-content:center;font-size:1rem;font-weight:650;text-decoration:none;transition:transform .2s ease,background-color .2s ease,color .2s ease}
+.dozni-tools-actions a:hover{transform:translateY(-2px)}
+.dozni-tools-actions .primary{background:#fff;color:var(--tools-orange)}
+.dozni-tools-actions .primary:hover{background:#fff7f2}
+.dozni-tools-actions .secondary{border:2px solid #fff;color:#fff;background:transparent}
+.dozni-tools-actions .secondary:hover{background:rgba(255,255,255,.1)}
+.dozni-tools-guide{padding:clamp(56px,7vw,88px) 0 0}
+.dozni-tools-guide-card{width:min(calc(100% - (var(--dozni-gutter) * 2)),var(--dozni-width));margin-inline:auto;padding:clamp(30px,4vw,48px);border:1px solid var(--tools-blue);background:var(--color-surface);display:grid;grid-template-columns:minmax(0,1.45fr) minmax(180px,.55fr);align-items:center;gap:40px;box-shadow:var(--shadow-sm)}
+.dozni-tools-guide h2,.dozni-tools-about h2{margin:0 0 22px;font-size:clamp(1.8rem,3vw,2.35rem);line-height:1.2;letter-spacing:-.025em;color:var(--color-text)}
+.dozni-tools-steps{display:grid;gap:16px}
+.dozni-tools-step{display:grid;grid-template-columns:40px minmax(0,1fr);align-items:center;gap:16px;color:var(--color-text);font-size:clamp(1rem,1.5vw,1.18rem);line-height:1.55}
+.dozni-tools-step-number{width:40px;height:40px;border-radius:50%;background:var(--tools-blue);color:#fff;display:grid;place-items:center;font-weight:800;font-size:1rem}
+.dozni-tools-badge{width:min(180px,100%);aspect-ratio:1;margin-inline:auto;color:var(--tools-blue)}
+.dozni-tools-badge svg{width:100%;height:100%;display:block}
+.dozni-tools-about{padding:clamp(36px,5vw,58px) 0 0}
+.dozni-tools-about-card{width:min(calc(100% - (var(--dozni-gutter) * 2)),var(--dozni-width));margin-inline:auto;padding:clamp(30px,4vw,46px);background:var(--color-surface);box-shadow:var(--shadow-sm)}
+.dozni-tools-about p{margin:0;color:var(--color-text);font-size:clamp(1rem,1.5vw,1.12rem);line-height:1.85}
+.dozni-tools-about p+p{margin-top:20px}
+@media (max-width:760px){
+ .dozni-tools-guide-card{grid-template-columns:1fr;gap:28px}
+ .dozni-tools-badge{width:120px;order:-1}
+ .dozni-tools-guide h2{margin-bottom:18px}
+ .dozni-tools-step{grid-template-columns:36px minmax(0,1fr);gap:12px}
+ .dozni-tools-step-number{width:36px;height:36px}
+}
+[data-theme="dark"] .dozni-tools-guide-card,[data-theme="dark"] .dozni-tools-about-card{box-shadow:none}
+</style>
+
+<section class="dozni-tools-intro" aria-label="Online tools introduction">
+  <section class="dozni-tools-hero">
+    <div class="dozni-tools-hero-inner">
+      <h1>Free Online Image &amp; PDF Tools</h1>
+      <p>Resize, compress and convert images online for SSC, NEET, GATE, passport photos and many other forms. Fast, secure and fully browser-based tools.</p>
+      <div class="dozni-tools-actions">
+        <a class="primary" href="/tools/">Browse Tools</a>
+        <a class="secondary" href="/tools/pdf/">Try JPG to PDF</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="dozni-tools-guide" aria-labelledby="tools-guide-title">
+    <div class="dozni-tools-guide-card">
+      <div>
+        <h2 id="tools-guide-title">How To Use Our Tools</h2>
+        <div class="dozni-tools-steps">
+          <div class="dozni-tools-step"><span class="dozni-tools-step-number">1</span><span>Open any tool from the homepage.</span></div>
+          <div class="dozni-tools-step"><span class="dozni-tools-step-number">2</span><span>Upload your image or document securely.</span></div>
+          <div class="dozni-tools-step"><span class="dozni-tools-step-number">3</span><span>Resize, compress or convert instantly.</span></div>
+          <div class="dozni-tools-step"><span class="dozni-tools-step-number">4</span><span>Download the processed file directly.</span></div>
+        </div>
+      </div>
+      <div class="dozni-tools-badge" aria-hidden="true">
+        <svg viewBox="0 0 180 180" fill="none">
+          <path d="M90 10l17 13 22-7 8 21 22 8-7 22 13 17-13 17 7 22-22 8-8 21-22-7-17 13-17-13-22 7-8-21-22-8 7-22-13-17 13-17-7-22 22-8 8-21 22 7 17-13Z" stroke="currentColor" stroke-width="13"/>
+          <path d="M59 90l20 20 42-44" stroke="currentColor" stroke-width="13" stroke-linecap="square" stroke-linejoin="miter"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="dozni-tools-about" aria-labelledby="tools-about-title">
+    <div class="dozni-tools-about-card">
+      <h2 id="tools-about-title">About Our Online Tools</h2>
+      <p>Our free online tools are specially designed for students, job applicants and professionals who need quick image resizing, compression and PDF conversion utilities.</p>
+      <p>All image processing happens directly inside your browser, which keeps your files private and secure.</p>
+      <p>The tools work on desktop, tablet and mobile devices, and support many popular online application forms.</p>
+    </div>
+  </section>
+</section>
